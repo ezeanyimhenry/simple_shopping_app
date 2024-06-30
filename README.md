@@ -19,3 +19,6 @@ A simple shopping app built with Flutter that showcases a list of products, allo
    ```bash
    git clone https://github.com/ezeanyimhenry/simple_shopping_app.git
    cd simple_shopping_app
+2. Download the Demo:
+   ![APK Download](https://drive.google.com/)
+   ![Appetize URL](https://drive.google.com/)
