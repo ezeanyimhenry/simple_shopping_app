@@ -10,7 +10,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Simple Shopping App',
       theme: ThemeData(
-        primarySwatch: Colors.blue,
+        primarySwatch: Colors.purple,
         visualDensity: VisualDensity.adaptivePlatformDensity,
         textTheme: TextTheme(
           titleLarge: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold),
@@ -30,9 +30,11 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   int _selectedIndex = 0;
   List<Product> products = [
-    Product('Product 1', 10.0),
-    Product('Product 2', 15.0),
-    Product('Product 3', 20.0),
+    Product('HD Camera', 1500.0, imagePath: 'assets/images/product1.jpg'),
+    Product('Cocacola can drink', 15.0,
+        imagePath: 'assets/images/product2.jpg'),
+    Product('Rolex Wrist Watch', 250.0,
+        imagePath: 'assets/images/product3.jpg'),
   ];
   List<Product> cart = [];
 
@@ -84,7 +86,7 @@ class _MyHomePageState extends State<MyHomePage> {
           ),
         ],
         currentIndex: _selectedIndex,
-        selectedItemColor: Colors.amber[800],
+        selectedItemColor: Color.fromARGB(255, 81, 9, 197),
         onTap: _onItemTapped,
       ),
     );
@@ -94,8 +96,9 @@ class _MyHomePageState extends State<MyHomePage> {
 class Product {
   final String name;
   final double price;
+  final String imagePath;
 
-  Product(this.name, this.price);
+  Product(this.name, this.price, {required this.imagePath});
 }
 
 class ProductsScreen extends StatelessWidget {
@@ -115,6 +118,9 @@ class ProductsScreen extends StatelessWidget {
             elevation: 5,
             margin: EdgeInsets.symmetric(vertical: 8.0),
             child: ListTile(
+              leading: CircleAvatar(
+                backgroundImage: AssetImage(products[index].imagePath),
+              ),
               title: Text(
                 products[index].name,
                 style: Theme.of(context).textTheme.titleLarge,
@@ -127,7 +133,8 @@ class ProductsScreen extends StatelessWidget {
                 onPressed: () => addToCart(products[index]),
                 child: Text('Add to Cart'),
                 style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.blue,
+                  foregroundColor: Colors.white,
+                  backgroundColor: Color.fromARGB(255, 81, 9, 197),
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(20.0),
                   ),
@@ -161,6 +168,9 @@ class CheckoutScreen extends StatelessWidget {
                   elevation: 5,
                   margin: EdgeInsets.symmetric(vertical: 8.0),
                   child: ListTile(
+                    leading: CircleAvatar(
+                      backgroundImage: AssetImage(cart[index].imagePath),
+                    ),
                     title: Text(
                       cart[index].name,
                       style: Theme.of(context).textTheme.titleLarge,
@@ -173,7 +183,8 @@ class CheckoutScreen extends StatelessWidget {
                       onPressed: () => removeFromCart(cart[index]),
                       child: Text('Remove'),
                       style: ElevatedButton.styleFrom(
-                        backgroundColor: Colors.red,
+                        foregroundColor: Colors.white,
+                        backgroundColor: Color.fromARGB(255, 143, 29, 9),
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(20.0),
                         ),
@@ -197,7 +208,8 @@ class CheckoutScreen extends StatelessWidget {
             },
             child: Text('Order Now'),
             style: ElevatedButton.styleFrom(
-              backgroundColor: Colors.green,
+              foregroundColor: Colors.white,
+              backgroundColor: Color.fromARGB(255, 81, 9, 197),
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(20.0),
               ),
