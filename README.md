@@ -19,6 +19,22 @@ A simple shopping app built with Flutter that showcases a list of products, allo
    ```bash
    git clone https://github.com/ezeanyimhenry/simple_shopping_app.git
    cd simple_shopping_app
-2. Download the Demo:
-   ![APK Download](https://drive.google.com/)
-   ![Appetize URL](https://drive.google.com/)
+
+2. Ensure you have Flutter installed. If not, follow the instructions here to install Flutter.
+
+1. Run the App:
+   ```bash
+   flutter pub get
+   flutter run
+
+## Download the Demo
+
+### APK Download
+- [Download APK](https://drive.google.com/your-apk-file-link)
+
+### Appetize.io Demo
+- [Open Appetize.io Demo](https://appetize.io/your-appetize-url)
+
+## License
+
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
