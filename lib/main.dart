@@ -11,6 +11,11 @@ class MyApp extends StatelessWidget {
       title: 'Simple Shopping App',
       theme: ThemeData(
         primarySwatch: Colors.blue,
+        visualDensity: VisualDensity.adaptivePlatformDensity,
+        textTheme: TextTheme(
+          titleLarge: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold),
+          bodyMedium: TextStyle(fontSize: 18.0),
+        ),
       ),
       home: MyHomePage(),
     );
@@ -41,6 +46,12 @@ class _MyHomePageState extends State<MyHomePage> {
     setState(() {
       cart.add(product);
     });
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: Text('${product.name} has been added to the cart'),
+        duration: Duration(seconds: 2),
+      ),
+    );
   }
 
   void _removeFromCart(Product product) {
@@ -95,18 +106,37 @@ class ProductsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ListView.builder(
-      itemCount: products.length,
-      itemBuilder: (context, index) {
-        return ListTile(
-          title: Text(products[index].name),
-          subtitle: Text('\$${products[index].price}'),
-          trailing: ElevatedButton(
-            onPressed: () => addToCart(products[index]),
-            child: Text('Add to Cart'),
-          ),
-        );
-      },
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: ListView.builder(
+        itemCount: products.length,
+        itemBuilder: (context, index) {
+          return Card(
+            elevation: 5,
+            margin: EdgeInsets.symmetric(vertical: 8.0),
+            child: ListTile(
+              title: Text(
+                products[index].name,
+                style: Theme.of(context).textTheme.titleLarge,
+              ),
+              subtitle: Text(
+                '\$${products[index].price}',
+                style: TextStyle(color: Colors.green[700], fontSize: 16),
+              ),
+              trailing: ElevatedButton(
+                onPressed: () => addToCart(products[index]),
+                child: Text('Add to Cart'),
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Colors.blue,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(20.0),
+                  ),
+                ),
+              ),
+            ),
+          );
+        },
+      ),
     );
   }
 }
@@ -122,28 +152,59 @@ class CheckoutScreen extends StatelessWidget {
     return Column(
       children: [
         Expanded(
-          child: ListView.builder(
-            itemCount: cart.length,
-            itemBuilder: (context, index) {
-              return ListTile(
-                title: Text(cart[index].name),
-                subtitle: Text('\$${cart[index].price}'),
-                trailing: ElevatedButton(
-                  onPressed: () => removeFromCart(cart[index]),
-                  child: Text('Remove'),
-                ),
-              );
-            },
+          child: Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: ListView.builder(
+              itemCount: cart.length,
+              itemBuilder: (context, index) {
+                return Card(
+                  elevation: 5,
+                  margin: EdgeInsets.symmetric(vertical: 8.0),
+                  child: ListTile(
+                    title: Text(
+                      cart[index].name,
+                      style: Theme.of(context).textTheme.titleLarge,
+                    ),
+                    subtitle: Text(
+                      '\$${cart[index].price}',
+                      style: TextStyle(color: Colors.green[700], fontSize: 16),
+                    ),
+                    trailing: ElevatedButton(
+                      onPressed: () => removeFromCart(cart[index]),
+                      child: Text('Remove'),
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: Colors.red,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(20.0),
+                        ),
+                      ),
+                    ),
+                  ),
+                );
+              },
+            ),
           ),
         ),
-        ElevatedButton(
-          onPressed: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => OrderSuccessfulScreen()),
-            );
-          },
-          child: Text('Order Now'),
+        Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: ElevatedButton(
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (context) => OrderSuccessfulScreen()),
+              );
+            },
+            child: Text('Order Now'),
+            style: ElevatedButton.styleFrom(
+              backgroundColor: Colors.green,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(20.0),
+              ),
+              padding: EdgeInsets.symmetric(horizontal: 50, vertical: 15),
+              textStyle: TextStyle(fontSize: 18),
+            ),
+          ),
         ),
       ],
     );
