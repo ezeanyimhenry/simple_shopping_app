@@ -10,9 +10,9 @@ A simple shopping app built with Flutter that showcases a list of products, allo
 - Order Successful screen after completing the checkout.
 
 ## Screenshots
-![Products Screen](screenshots/products_screen.png)
-![Checkout Screen](screenshots/checkout_screen.png)
-![Order Successful Screen](screenshots/order_successful_screen.png)
+![Products Screen](assets/screenshots/product.png)
+![Checkout Screen](assets/screenshots/checkout.png)
+![Order Successful Screen](assets/screenshots/order.png)
 
 ## Setup Instructions
 1. Clone the repository:
