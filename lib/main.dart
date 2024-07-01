@@ -62,11 +62,21 @@ class _MyHomePageState extends State<MyHomePage> {
     });
   }
 
+  void _clearCart() {
+    setState(() {
+      cart.clear();
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     List<Widget> _widgetOptions = <Widget>[
       ProductsScreen(products: products, addToCart: _addToCart),
-      CheckoutScreen(cart: cart, removeFromCart: _removeFromCart),
+      CheckoutScreen(
+        cart: cart,
+        removeFromCart: _removeFromCart,
+        clearCart: _clearCart,
+      ),
     ];
 
     return Scaffold(
@@ -151,8 +161,12 @@ class ProductsScreen extends StatelessWidget {
 class CheckoutScreen extends StatelessWidget {
   final List<Product> cart;
   final Function(Product) removeFromCart;
+  final Function clearCart;
 
-  CheckoutScreen({required this.cart, required this.removeFromCart});
+  CheckoutScreen(
+      {required this.cart,
+      required this.removeFromCart,
+      required this.clearCart});
 
   @override
   Widget build(BuildContext context) {
@@ -200,6 +214,7 @@ class CheckoutScreen extends StatelessWidget {
           padding: const EdgeInsets.all(8.0),
           child: ElevatedButton(
             onPressed: () {
+              clearCart();
               Navigator.push(
                 context,
                 MaterialPageRoute(
