@@ -30,10 +30,10 @@ A simple shopping app built with Flutter that showcases a list of products, allo
 ## Download the Demo
 
 ### APK Download
-- [Download APK](https://drive.google.com/file/d/106N2e703Yy3xPgdQEhkxwp5jaAIt5ZVz/view?usp=sharing)
+- [Download APK](https://drive.google.com/file/d/1i_L45AoqwQIHFVaFENX6s-GYHZnGiIJc/view?usp=sharing)
 
 ### Appetize.io Demo
-- [Open Appetize.io Demo](https://appetize.io/app/ertpvghpnmxt46mmv4g7m7mluu?device=pixel7&osVersion=13.0)
+- [Open Appetize.io Demo](https://appetize.io/app/54lf4lgii7hftqbutw7vqqcjoa?device=pixel7&osVersion=13.0)
 
 ## License
 
